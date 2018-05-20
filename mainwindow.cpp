@@ -2,18 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QApplication>
 #include <QMessageBox>
-#include <ctime>
-#include <iostream>
-#include <windows.h>
-#include <fstream>
-#include <string>
-#include <stdlib.h>
-#include <time.h>
-#include <QMessageBox>
-#include <QtGui>
-#include <qinputdialog.h>
-const int M=537;
-using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -25,38 +14,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-typedef struct gorod{
-   string name;
-   int god;
-   int naselenie;
-};
-
-void SortBestCase(int *arr, int col) {
-    time_t start, end;
-    int trash=0;
-    start = clock();
-    for (int i=0; i<=col-1 ; i++)
-    {
-        for (int j=i+1; j<=col; j++)
-        {
-            if (arr[i]>arr[j])
-            {
-                trash=arr[i];
-                arr[i]=arr[j];
-                arr[j]=trash;
-            }
-        }
-    }
-}
-
-void reverse(int *a, int n){
-    for (int i  = 0; i < n / 2; i++){
-       swap(a[i], a[n - i - 1]);
-       cout<<a[i]<<endl;
-    }
-}
-
 
 void MainWindow::on_Baza_clicked()
 {

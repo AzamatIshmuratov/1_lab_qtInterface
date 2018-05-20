@@ -13,6 +13,7 @@
 #include <time.h>
 #include <QtGui>
 #include <qinputdialog.h>
+using namespace std;
 Massiv::Massiv(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Massiv)
@@ -148,6 +149,30 @@ void ShakerSort(int *Mas, int Start, int N,int &srav,int &pers, double &seconds)
   end = clock();
   seconds = (double)(end - start) / CLOCKS_PER_SEC;
 }
+void SortBestCase(int *arr, int col) {
+    time_t start, end;
+    int trash=0;
+    start = clock();
+    for (int i=0; i<=col-1 ; i++)
+    {
+        for (int j=i+1; j<=col; j++)
+        {
+            if (arr[i]>arr[j])
+            {
+                trash=arr[i];
+                arr[i]=arr[j];
+                arr[j]=trash;
+            }
+        }
+    }
+}
+
+void reverse(int *a, int n){
+    for (int i  = 0; i < n / 2; i++){
+       swap(a[i], a[n - i - 1]);
+       cout<<a[i]<<endl;
+    }
+}
 void Massiv::on_pushButton_clicked()
 {
     QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Вы на главное меню?", QMessageBox::Yes| QMessageBox::No);
@@ -201,6 +226,102 @@ void Massiv::on_pushButton_2_clicked()
             for(int i=0;i<n;++i){
                         a1[i]=rand()%101;
             }
+            ShakerSort(a1,1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+    }
+    if(ui->bad->isChecked()){
+        if(ui->piramida->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            reverse(a1,n);
+            heapSort(a1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->quick->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            reverse(a1,n);
+            time_t start, end;
+            start = clock();
+            quickSort(a1,0,n-1,srav,pers);
+            end = clock();
+            double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->bub->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            reverse(a1,n);
+            BubSort(a1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->shake->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            reverse(a1,n);
+            ShakerSort(a1,1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+    }
+    if(ui->best->isChecked()){
+        if(ui->piramida->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            heapSort(a1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->quick->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            time_t start, end;
+            start = clock();
+            quickSort(a1,0,n-1,srav,pers);
+            end = clock();
+            double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->bub->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
+            BubSort(a1,n,srav,pers,seconds);
+            ui->pers->setText(QString::number(pers));
+            ui->sravn->setText(QString::number(srav));
+            ui->vrem->setText(QString::number(seconds));
+        }
+        if(ui->shake->isChecked()){
+            for(int i=0;i<n;++i){
+                        a1[i]=rand()%101;
+            }
+            SortBestCase(a1,n);
             ShakerSort(a1,1,n,srav,pers,seconds);
             ui->pers->setText(QString::number(pers));
             ui->sravn->setText(QString::number(srav));
