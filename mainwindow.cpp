@@ -32,96 +32,6 @@ typedef struct gorod{
    int naselenie;
 };
 
-// Функция сортировки на куче
-
-void quickSort(int *a ,int l, int r, int &srav, int &pers)
-{
-   int w,x,i,j;
-   i=l;
-   j=r;
-   x=a[(l+r)/2];
-   while (i<=j){
-       while (a[i]<x) i++;
-       while (x<a[j]) j--;
-       srav++;
-       if (i<=j){
-         w=a[i];
-         a[i]=a[j];
-         a[j]=w;
-         i++;
-         j--;
-         pers++;
-       }
-   }
-   if (l<j) quickSort(a,l,j,srav,pers);
-   if (i<r) quickSort(a,i,r,srav,pers);
-}
-
-void BubSort(int *arr, int col) {
-    time_t start, end;
-    int pers=0, srav=0;
-    int trash=0;
-    start = clock();
-    for (int i=0; i<=col-1 ; i++)
-    {
-        for (int j=i+1; j<=col; j++)
-        {
-            srav++;
-            if (arr[i]>arr[j])
-            {
-                trash=arr[i];
-                arr[i]=arr[j];
-                arr[j]=trash;
-                pers++;
-            }
-        }
-    }
-  end = clock();
-  double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-  cout << "\nВремя Сортировки Пузырьком = " << seconds;
-  cout<<"\nКоличество: Сравнений: "<<srav<<"  Перестановок: "<<pers;
-}
-
-
-void Swap(int *Mas, int i)
-{
-   int temp;
-   temp=Mas[i];
-   Mas[i]=Mas[i-1];
-   Mas[i-1]=temp;
-}
-void ShakerSort(int *Mas, int Start, int N)
-{
-    time_t start, end;
-    int pers=0, srav=0;
-   int Left, Right, i;
-   Left=Start;
-   Right=N-1;
-   start = clock();
-   while (Left<=Right){
-      for (i=Right; i>=Left; i--){
-        srav++;
-        if (Mas[i-1]>Mas[i]){
-                Swap(Mas, i);
-                pers++;
-        }
-      }
-      Left++;
-      for (i=Left; i<=Right; i++){
-        srav++;
-        if (Mas[i-1]>Mas[i]){
-            Swap(Mas, i);
-            pers++;
-        }
-      }
-      Right--;
-  }
-  end = clock();
-  double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-  cout << "\nВремя Шейкерной сортировки = " << seconds;
-  cout<<"\nКоличество: Сравнений: "<<srav<<"  Перестановок: "<<pers;
-}
-
 void SortBestCase(int *arr, int col) {
     time_t start, end;
     int trash=0;
@@ -154,7 +64,7 @@ void MainWindow::on_Baza_clicked()
     window1= new Baza(this);
     connect(window1, &Baza::firstWindow, this,&MainWindow::show);
     window1->show();
-            ifstream fin;
+            /*ifstream fin;
             ofstream fout1;
             ofstream fout2;
             fout1.open("GorodaSortedGod.txt");
@@ -163,7 +73,7 @@ void MainWindow::on_Baza_clicked()
             struct gorod g[M];
             for(int i=0;i<M;++i){
                fin >> g[i].name>> g[i].naselenie >> g[i].god;
-            }
+            }*/
 }
 
 void MainWindow::on_Massiv_clicked()
@@ -176,7 +86,7 @@ void MainWindow::on_Massiv_clicked()
 
 void MainWindow::on_Out_clicked()
 {
-    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Вы дей?", QMessageBox::Yes| QMessageBox::No);
+    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Выйти?", QMessageBox::Yes| QMessageBox::No);
         if(reply==QMessageBox::Yes){
             QApplication::quit();
         }
