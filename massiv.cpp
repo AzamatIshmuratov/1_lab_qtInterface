@@ -17,7 +17,7 @@ Massiv::~Massiv()
 
 void Massiv::on_pushButton_clicked()
 {
-    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Вы дей?", QMessageBox::Yes| QMessageBox::No);
+    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Вы на главное меню?", QMessageBox::Yes| QMessageBox::No);
         if(reply==QMessageBox::Yes){
             this->close();
             emit firstWindow();

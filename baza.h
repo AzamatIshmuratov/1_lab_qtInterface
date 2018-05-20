@@ -25,6 +25,8 @@ private slots:
 
     void on_bub_clicked();
 
+    void on_shake_clicked();
+
 private:
     Ui::Baza *ui;
 };

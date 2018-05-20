@@ -219,9 +219,80 @@ void BubSortN(gorod *arr, int col,int &srav,int &pers,double &seconds) {
     end = clock();
     seconds = (double)(end - start) / CLOCKS_PER_SEC;
 }
+
+void SwapG(gorod *Mas, int i)
+{
+   gorod temp;
+   temp=Mas[i];
+   Mas[i]=Mas[i-1];
+   Mas[i-1]=temp;
+}
+void SwapN(gorod *Mas, int i)
+{
+   gorod temp;
+   temp=Mas[i];
+   Mas[i]=Mas[i-1];
+   Mas[i-1]=temp;
+}
+void ShakerSortG(gorod *Mas, int Start, int N,int &srav,int &pers,double &seconds)
+{
+   time_t start, end;
+   int Left, Right, i;
+   Left=Start;
+   Right=N-1;
+   start = clock();
+   while (Left<=Right){
+      for (i=Right; i>=Left; i--){
+        srav++;
+        if (Mas[i-1].god>Mas[i].god){
+            SwapG(Mas, i);
+            pers++;
+        }
+      }
+      Left++;
+      for (i=Left; i<=Right; i++){
+        srav++;
+        if (Mas[i-1].god>Mas[i].god){
+            SwapG(Mas, i);
+            pers++;
+        }
+      }
+      Right--;
+   }
+  end = clock();
+  seconds = (double)(end - start) / CLOCKS_PER_SEC;
+}
+void ShakerSortN(gorod *Mas, int Start, int N,int &srav,int &pers,double &seconds)
+{
+    time_t start, end;
+   int Left, Right, i;
+   Left=Start;
+   Right=N-1;
+   start = clock();
+   while (Left<=Right){
+      for (i=Right; i>=Left; i--){
+        srav++;
+        if (Mas[i-1].naselenie>Mas[i].naselenie){
+            SwapN(Mas, i);
+            pers++;}
+      }
+      Left++;
+      for (i=Left; i<=Right; i++){
+        srav++;
+        if (Mas[i-1].naselenie>Mas[i].naselenie){
+            SwapN(Mas, i);
+            pers++;
+        }
+      }
+        Right--;
+    }
+   end = clock();
+  seconds = (double)(end - start) / CLOCKS_PER_SEC;
+}
+
 void Baza::on_pushButton_clicked()
 {
-    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Вы дей?", QMessageBox::Yes| QMessageBox::No);
+    QMessageBox::StandardButton reply=QMessageBox::question(this,"Выход","Выйти на главное меню?", QMessageBox::Yes| QMessageBox::No);
         if(reply==QMessageBox::Yes){
             this->close();
             emit firstWindow();
@@ -365,7 +436,7 @@ void Baza::on_shake_clicked()
             for(int i=0;i<M;++i){
             fin >> g[i].name>> g[i].naselenie >> g[i].god;
             }
-                ShakerSortG(g,1,M);
+                ShakerSortG(g,1,M,srav,pers,seconds);
                 for(int i=0;i<M;++i){
                                 fout1 <<  g[i].name <<"   "<< g[i].naselenie << "   "<< g[i].god << "\n";
             }
@@ -375,7 +446,7 @@ void Baza::on_shake_clicked()
                 seconds=0;
                 pers=0;
                 srav=0;
-                ShakerSortG(g,1,M);
+                ShakerSortN(g,1,M,srav,pers,seconds);
                             for(int i=0;i<M;++i){
                                 fout2 <<  g[i].name <<"   "<< g[i].naselenie << "   "<< g[i].god << "\n";
                 }

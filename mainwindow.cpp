@@ -140,20 +140,6 @@ void Swap(int *Mas, int i)
    Mas[i]=Mas[i-1];
    Mas[i-1]=temp;
 }
-void SwapG(gorod *Mas, int i)
-{
-   gorod temp;
-   temp=Mas[i];
-   Mas[i]=Mas[i-1];
-   Mas[i-1]=temp;
-}
-void SwapN(gorod *Mas, int i)
-{
-   gorod temp;
-   temp=Mas[i];
-   Mas[i]=Mas[i-1];
-   Mas[i-1]=temp;
-}
 void ShakerSort(int *Mas, int Start, int N)
 {
     time_t start, end;
@@ -184,67 +170,6 @@ void ShakerSort(int *Mas, int Start, int N)
   double seconds = (double)(end - start) / CLOCKS_PER_SEC;
   cout << "\nВремя Шейкерной сортировки = " << seconds;
   cout<<"\nКоличество: Сравнений: "<<srav<<"  Перестановок: "<<pers;
-}
-void ShakerSortG(gorod *Mas, int Start, int N)
-{
-    int pers=0, srav=0;
-   time_t start, end;
-   int Left, Right, i;
-   Left=Start;
-   Right=N-1;
-   start = clock();
-   while (Left<=Right){
-      for (i=Right; i>=Left; i--){
-        srav++;
-        if (Mas[i-1].god>Mas[i].god){
-            SwapG(Mas, i);
-            pers++;
-        }
-      }
-      Left++;
-      for (i=Left; i<=Right; i++){
-        srav++;
-        if (Mas[i-1].god>Mas[i].god){
-            SwapG(Mas, i);
-            pers++;
-        }
-      }
-      Right--;
-   }
-  end = clock();
-  double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-  cout << "\nВремя сортировки по году = " << seconds;
-  cout<<"\nГода: Сравнений: "<<srav<<"  Перестановок: "<<pers;
-}
-void ShakerSortN(gorod *Mas, int Start, int N)
-{
-    int pers=0, srav=0;
-    time_t start, end;
-   int Left, Right, i;
-   Left=Start;
-   Right=N-1;
-   start = clock();
-   while (Left<=Right){
-      for (i=Right; i>=Left; i--){
-        srav++;
-        if (Mas[i-1].naselenie>Mas[i].naselenie){
-            SwapN(Mas, i);
-            pers++;}
-      }
-      Left++;
-      for (i=Left; i<=Right; i++){
-        srav++;
-        if (Mas[i-1].naselenie>Mas[i].naselenie){
-            SwapN(Mas, i);
-            pers++;
-        }
-      }
-        Right--;
-    }
-    end = clock();
-  double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-  cout << "\n\nВремя сортировки по населению = " << seconds;
-  cout<<"\nГода: Сравнений: "<<srav<<"  Перестановок: "<<pers;
 }
 
 void SortBestCase(int *arr, int col) {
