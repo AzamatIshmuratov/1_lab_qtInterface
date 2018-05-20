@@ -170,7 +170,6 @@ void SortBestCase(int *arr, int col) {
 void reverse(int *a, int n){
     for (int i  = 0; i < n / 2; i++){
        swap(a[i], a[n - i - 1]);
-       cout<<a[i]<<endl;
     }
 }
 void Massiv::on_pushButton_clicked()
