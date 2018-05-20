@@ -32,57 +32,7 @@ typedef struct gorod{
    int naselenie;
 };
 
-void siftDown(int *numbers, int root, int bottom,int &srav,int &pers)
-{
-  int maxChild; // индекс максимального потомка
-  int done = 0; // флаг того, что куча сформирована
-  // Пока не дошли до последнего ряда
-  while ((root * 2 <= bottom) && (!done))
-  {
-    srav++;
-    if (root * 2 == bottom)    // если мы в последнем ряду,
-      maxChild = root * 2;    // запоминаем левый потомок
-    // иначе запоминаем больший потомок из двух
-    else if (numbers[root * 2]>numbers[root * 2 + 1])
-      maxChild = root * 2;
-    else
-      maxChild = root * 2 + 1;
-    // если элемент вершины меньше максимального потомка
-    if (numbers[root]< numbers[maxChild])
-    {
-      int temp = numbers[root]; // меняем их местами
-      numbers[root] = numbers[maxChild];
-      numbers[maxChild] = temp;
-      root = maxChild;
-      pers++;
-    }
-    else // иначе
-      done = 1; // пирамида сформирована
-  }
-}
-
 // Функция сортировки на куче
-void heapSort(int *numbers, int array_size)
-{
-  time_t start, end;
-  int pers=0, srav=0;
-  start = clock();
-  // Формируем нижний ряд пирамиды
-  for (int i = (array_size / 2) - 1; i >= 0; i--){
-    siftDown(numbers, i, array_size,srav,pers);}
-  // Просеиваем через пирамиду остальные элементы
-  for (int i = array_size - 1; i >= 1; i--)
-  {
-    int temp = numbers[0];
-    numbers[0] = numbers[i];
-    numbers[i] = temp;
-    siftDown(numbers, 0, i - 1,srav,pers);
-  }
-  end = clock();
-  double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-  cout << "\nВремя Пирамидальной сортировки = " << seconds;
-  cout<<"\nКоличество: Сравнений: "<<srav<<"  Перестановок: "<<pers;
-}
 
 void quickSort(int *a ,int l, int r, int &srav, int &pers)
 {
